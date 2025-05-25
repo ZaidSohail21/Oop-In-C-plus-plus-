@@ -1,91 +1,81 @@
-//#include<iostream>
-//#include<string>
+//#include <iostream>
+//
 //using namespace std;
-//class Student
-//{
-//	int studentID;
-//	double GPA;
-//	string degreeName, studentName;
+//
+//class Person {
+//protected:
+//	char name[50];
+//	int age;
+//
 //public:
-//	void display()
-//	{
-//		cout << "Enter the Student ID: ";
-//		cin >> studentID;
-//		cout << "Enter your Name: ";
-//		cin >> studentName;
-//		cout << "Enter the Dergree: ";
-//		cin >> degreeName;
-//		cout << "Enter the GPA: ";
-//		cin >> GPA;
+//	Person() {
+//		cout << "Person constructor called." << endl;
+//		name[0] = '\0';
+//		age = 0;
 //	}
-//	double calculatePercentage(double total, double obt)
-//	{
-//		double per = (obt / total) * 100;
-//		return per;
+//
+//	Person(const char* n, int a) : age(a) {
+//		cout << "Person parameterized constructor called." << endl;
+//		int i = 0;
+//		while (n[i] != '\0' && i < 49) {
+//			name[i] = n[i];
+//			i++;
+//		}
+//		name[i] = '\0';
 //	}
-//	void disPercantage(double Percentage)
-//	{
 //
-//		if (Percentage >= 86)
-//		{
-//			cout << "The Grade is 'A+'.";
-//		}
-//		else if (Percentage >= 82)
-//		{
-//			cout << "The Grade is 'A'.";
-//		}
-//		else if (Percentage >= 78)
-//		{
-//			cout << "The Grade is 'B+'.";
-//		}
-//		else if (Percentage >= 74)
-//		{
-//			cout << "The Grade is 'B'.";
-//		}
-//		else if (Percentage >= 70)
-//		{
-//			cout << "The Grade is 'B-'.";
-//		}
-//		else if (Percentage >= 66)
-//		{
-//			cout << "The Grade is 'C+'.";
-//		}
-//		else if (Percentage >= 62)
-//		{
-//			cout << "The Grade is 'C'.";
-//		}
-//		else if (Percentage >= 58)
-//		{
-//			cout << "The Grade is 'C-'.";
-//		}
-//		else if (Percentage >= 54)
-//		{
-//			cout << "The Grade is 'D+'.";
-//		}
-//		else if (Percentage >= 50)
-//		{
-//			cout << "The Grade is 'D'.";
-//		}
-//		else if (Percentage <50)
-//		{
-//			cout << "The Grade is 'F'.";
-//		}
-//
+//	void display() const {
+//		cout << "Name: " << name << ", Age: " << age << endl;
 //	}
 //};
-//int main()
-//{
-//	Student s1;
-//	s1.display();
 //
-//	double total, obtain;
-//	cout << "Enter Your obtained marks: ";
-//	cin >> obtain;
-//	cout << "Enter Your total marks: ";
-//	cin >> total;
+//class Student : virtual public Person { // Virtual inheritance
+//public:
+//	Student() {
+//		cout << "Student constructor called." << endl;
+//	}
 //
-//	double Percentage = s1.calculatePercentage(total, obtain);
-//	s1.disPercantage(Percentage);
+//	Student(const char* n, int a) : Person(n, a) {
+//		cout << "Student parameterized constructor called." << endl;
+//	}
+//};
+//
+//class Teacher : virtual public Person { // Virtual inheritance
+//public:
+//	Teacher() {
+//		cout << "Teacher constructor called." << endl;
+//	}
+//
+//	Teacher(const char* n, int a) : Person(n, a) {
+//		cout << "Teacher parameterized constructor called." << endl;
+//	}
+//};
+//
+//class TA : public Student, public Teacher {
+//public:
+//	TA() {
+//		cout << "TA constructor called." << endl;
+//	}
+//
+//	TA(const char* n, int a) : Person(n, a), Student(n, a), Teacher(n, a) {
+//		cout << "TA parameterized constructor called." << endl;
+//	}
+//};
+//
+//int main() {
+//	cout << "Creating TA object using default constructor:" << endl;
+//	TA ta1;
+//	cout << endl;
+//
+//	cout << "Creating TA object using parameterized constructor:" << endl;
+//	TA ta2("John Smith", 25);
+//	cout << endl;
+//
+//	cout << "Calling display() using default object:" << endl;
+//	ta1.display(); // No ambiguity now
+//	cout << endl;
+//	cout << "Calling display() using parameterized object:" << endl;
+//	ta2.display(); // No ambiguity now
 //	cout << endl;
 //	system("pause");
 //	return 0;
