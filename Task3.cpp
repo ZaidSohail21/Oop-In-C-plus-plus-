@@ -1,35 +1,13 @@
 //#include <iostream>
+//
 //using namespace std;
-//class Student {
-//private:
+//
+//class Animal {
+//protected:
 //	char name[50];
-//	int age;
 //
 //public:
-//	Student(const char* n, int a) {
-//		int i = 0;
-//		while (n[i] != '\0' && i < 49) {
-//			name[i] = n[i];
-//			i++;
-//		}
-//		name[i] = '\0';
-//		age = a;
-//	}
-//
-//	void displayInfo() const {
-//		std::cout << "  Name: " << name << ", Age: " << age << std::endl;
-//	}
-//};
-//
-//class Teacher {
-//private:
-//	char name[50];
-//	Student* students[10];
-//	int studentCount;
-//	const int maxStudents;
-//
-//public:
-//	Teacher(const char* n, int max) : studentCount(0), maxStudents(max) {
+//	Animal(const char* n) {
 //		int i = 0;
 //		while (n[i] != '\0' && i < 49) {
 //			name[i] = n[i];
@@ -38,58 +16,78 @@
 //		name[i] = '\0';
 //	}
 //
-//	bool addStudent(const Student& student) {
-//		if (studentCount < maxStudents) {
-//			students[studentCount] = new Student(student);
-//			studentCount++;
-//			return true;
+//	void setName(const char* n) {
+//		int i = 0;
+//		while (n[i] != '\0' && i < 49) {
+//			name[i] = n[i];
+//			i++;
 //		}
-//		else {
-//			std::cout << "Maximum student capacity reached for " << name << "." << std::endl;
-//			return false;
-//		}
+//		name[i] = '\0';
 //	}
 //
 //	void display() const {
-//		std::cout << "Teacher: " << name << std::endl;
-//		if (studentCount == 0) {
-//			std::cout << "No students assigned yet." << std::endl;
-//			return;
-//		}
-//		std::cout << "Students:" << std::endl;
-//		for (int i = 0; i < studentCount; i++) {
-//			students[i]->displayInfo();
-//		}
+//		cout << "Name: " << name << endl;
 //	}
-//	~Teacher(){
-//		for (int i = 0; i< studentCount; i++){
-//			delete students[i];
-//		}
+//
+//	virtual void makeSound() {
+//		cout << "Base class: Animal object" << endl;
+//	}
+//};
+//
+//class Dog : public Animal {
+//public:
+//	Dog(const char* n) : Animal(n) {}
+//
+//	void makeSound() override {
+//		cout << "Derived class: Dog object" << endl;
+//	}
+//};
+//
+//class Cat : public Animal {
+//public:
+//	Cat(const char* n) : Animal(n) {}
+//
+//	void makeSound() override {
+//		cout << "Derived class: Cat object" << endl;
 //	}
 //};
 //
 //int main() {
-//	Teacher teacher1("Mr. Smith", 3);
+//	Animal animal("Generic Animal");
+//	Cat cat("Whiskers");
+//	Dog dog("Buddy");
 //
-//	Student student1("Alice", 18);
-//	Student student2("Bob", 19);
-//	Student student3("Charlie", 20);
-//	Student student4("David", 21);
-//	teacher1.addStudent(student1);
-//	teacher1.addStudent(student2);
-//	teacher1.addStudent(student3);
-//	teacher1.addStudent(student4);
-//
-//
-//	Teacher teacher2("Ms. Johnson", 2);
-//	Student student5("Eve", 19);
-//	Student student6("Frank", 20);
-//	teacher2.addStudent(student5);
-//	teacher2.addStudent(student6);
-//
-//	teacher1.display();
+//	cout << "--- Calling display() ---" << endl;
+//	animal.display();
+//	cat.display();
+//	dog.display();
 //	cout << endl;
-//	teacher2.display();
+//
+//	cout << "--- Calling makeSound() ---" << endl;
+//	animal.makeSound();
+//	cat.makeSound();
+//	dog.makeSound();
+//	cout << endl;
+//
+//	cout << "--- Assigning subclass object to superclass object ---" << endl;
+//	Animal animalFromCat = cat; // Object slicing
+//	animalFromCat.makeSound(); // Calls Animal::makeSound()
+//	cout << endl;
+//
+//	cout << "--- Using superclass pointer ---" << endl;
+//	Animal* animalPtr;
+//
+//	cout << "--- Assigning superclass object to superclass pointer ---" << endl;
+//	animalPtr = &animal;
+//	animalPtr->makeSound();
+//
+//	cout << "--- Assigning subclass objects to superclass pointer ---" << endl;
+//	animalPtr = &cat;
+//	animalPtr->makeSound(); // Calls Cat::makeSound() - Polymorphism!
+//
+//	animalPtr = &dog;
+//	animalPtr->makeSound(); // Calls Dog::makeSound() - Polymorphism!
+//	cout << endl;
 //	system("pause");
 //	return 0;
 //}
