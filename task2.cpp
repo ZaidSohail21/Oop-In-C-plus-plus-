@@ -1,84 +1,95 @@
 //#include <iostream>
 //#include <string>
 //using namespace std;
-//
-//void CompareArea();
-//
-//class person{
-//	string* name=new string;
-//	int age;
+//class Rectangle {
+//	int imaginary, real;
 //public:
-//	person(){
-//		cout << "Default constructor " << endl;
-//		*name = 'null';
-//		age = 0;
-//	}
-//	person(string* l, int w){
-//		cout << "Paramatric constructor " << endl;
-//		*name = *l;
-//		age= w;
-//	}
-//	/*person(person &ra){
-//		cout << "Shallow constructor " << endl;
-//		name = ra.name;
-//		age = ra.age;
-//	}*/
-//	person(person &ra){
-//		cout << "Deep constructor " << endl;
-//		name =new string( *ra.name);
-//		age = ra.age;
-//	}
-//	//setter
-//	void setter(string *nam, int w){
-//		this->name = nam;
-//		this->age = age;
-//	}
-//	//gettter
-//	void namegetter(){ cout << *name; }
-//	void agegetter(){ cout << age; }
-//	
-//	//display function
+//	// Default Constructor
+//	Rectangle() : imaginary(0), real(0) { }
+//
+//	// Parameterized Constructor
+//	Rectangle(int a, int b) : imaginary(a), real(b) { }
+//	//copy constructor
+//	Rectangle(Rectangle& obj) :imaginary(obj.imaginary), real(obj.real){ }
+//	// Setters
+//	void imaginarysetter(int a) { imaginary = a; }
+//	void realsetter(int b) { real = b; }
+//
+//
+//	// Getters
+//	int imaginarygetter() const { return imaginary; }
+//	int realgetter() const { return real; }
+//	// Display
 //	void display(){
-//		cout << "Name  : ";
-//		namegetter();
-//		cout << endl;
-//		
-//		cout << "Age  : ";
-//		agegetter();
-//		cout << endl;
-//		
+//		cout << "Imaginary :" << imaginarygetter() << endl;
+//		cout << "Real :" << realgetter() << endl;
 //	}
-//
-//
-//	// Deleting object
-//	~person(){
-//		cout << "Default destructor " << endl;
+//	//operators
+//	Rectangle operator+(const Rectangle& other){
+//		Rectangle Temp;
+//		Temp.imaginary = this->imaginary + other.imaginary;
+//		Temp.real = this->real + other.real;
+//		cout << Temp.imaginary << endl;
+//		cout << Temp.real << endl;
+//		return Temp;
 //	}
+//	Rectangle operator-(const Rectangle& other){
+//
+//		imaginary = imaginary - other.imaginary;
+//		real = real - other.real;
+//		return *this;
+//	}
+//	
+//	bool operator==(const Rectangle& other){
+//		if (this->imaginary == other.imaginary && this->real == other.real){
+//			return true;
+//		}
+//		else{
+//			return false;
+//		}
+//	}
+//	bool operator!=(const Rectangle& other){
+//		if (this->imaginary == other.imaginary && this->real == other.real){
+//			return false;
+//		}
+//		else{
+//			return true;
+//		}
+//	}
+//	Rectangle operator++(){
+//		++real;
+//		++imaginary;
+//		return *this;
+//	}
+//	Rectangle operator++(int){
+//		real++;
+//		imaginary++;
+//		return *this;
+//	}
+//	friend ostream& operator << (ostream& out, const Rectangle& obj);
 //
 //};
-//int main(){
-//	
-//	int a;
-//	string *ptr = new string[1];
-//	person p1;
-//	cout << "Enter name :";
-//	cin >> *ptr ;
-//	cout << "Enter age :";
-//	cin >> a;
-//	p1.setter(ptr, a);
-//
-//	cout << "Enter name :";
-//	cin >> *ptr;
-//	cout << "Enter age :";
-//	cin >> a;
-//	person p2;
-//	p2.setter(ptr, a);
-//	cout << "P1 display :" << endl;
-//	p1.display();
-//
-//	cout << "P2 display :" << endl;
-//	p2.display();
-//	
+//ostream& operator << (ostream& out, const Rectangle& obj){
+//	out << "length :" << obj.imaginary << endl;
+//	out << "width :" << obj.real << endl;
+//	return out;
+//}
+//int main() {
+//	Rectangle r1;
+//	Rectangle r2(1, 2);
+//	Rectangle r3;
+//	 r1 + r2;
+//	cout << r3;
+//	Rectangle r4 = r3 - r2;
+//	cout << r4;
+//	if (r4 == r1){
+//		cout << "they are equal" << endl;
+//	}
+//	else{
+//		cout << "They are not equal" << endl;
+//	}
+//	r4++;
+//	cout << r4;
 //	cout << endl;
 //	system("pause");
 //	return 0;
